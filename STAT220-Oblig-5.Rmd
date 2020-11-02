@@ -9,3 +9,20 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+lb<-0.5
+N<-10
+T<-rexp(N,lb)
+S<-rep(0,N)
+S[1]<-T[1]
+for(k in 2:N) S[k]<- S[k-1] + T[k]
+delta<-0.1
+tmax<- S[N]+ 0.5/lb
+tvalues<-seq(delta, tmax,delta)
+ntvalues<- length(tvalues)
+X<-rep(0, ntvalues)
+for(t in 1: ntvalues) X[t]<- length( which( S<=tvalues[t] ))
+plot(tvalues, X, type="s")
+
+```
+
