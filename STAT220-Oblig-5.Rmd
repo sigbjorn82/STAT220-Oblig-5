@@ -9,20 +9,79 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+\underline{Problem 8.1}
 ```{r}
 lb<-0.5
-N<-10
-T<-rexp(N,lb)
-S<-rep(0,N)
-S[1]<-T[1]
-for(k in 2:N) S[k]<- S[k-1] + T[k]
 delta<-0.1
-tmax<- S[N]+ 0.5/lb
+N<-c(10, 100, 1000)
+
+T1<-rexp(N[1],lb)
+S1<-rep(0,N[1])
+S1[1]<-T1[1]
+
+for(k in 2:N[1]) S1[k]<- S1[k-1] + T1[k]
+
+tmax1<- S1[N[1]]+ 0.5/lb
+tvalues1<-seq(delta, tmax1,delta)
+ntvalues1<- length(tvalues1)
+X1<-rep(0, ntvalues1)
+for(t in 1: ntvalues1) X1[t]<- length( which( S1<=tvalues1[t] ))
+plot(tvalues1, X1, type="s", main = 'Problem 8.1 (a) --> N = 10')
+```
+\newpage
+```{r}
+T2<-rexp(N[2],lb)
+S2<-rep(0,N[2])
+S2[1]<-T2[1]
+
+for(k in 2:N[2]) S2[k]<- S2[k-1] + T2[k]
+
+tmax2 <- S2[N[2]]+ 0.5/lb
+tvalues2<-seq(delta, tmax2, delta)
+ntvalues2<- length(tvalues2)
+X2<-rep(0, ntvalues2)
+for(t in 1: ntvalues2) X2[t]<- length( which( S2<=tvalues2[t] ))
+
+plot(tvalues2, X2, type="s", main = 'Problem 8.1 (b) --> N = 100')
+```
+\newpage
+```{r}
+T3<-rexp(N[3],lb)
+S3<-rep(0,N[3])
+S3[1]<-T3[1]
+
+for(k in 2:N[3]) S3[k]<- S3[k-1] + T3[k]
+
+tmax3 <- S3[N[3]]+ 0.5/lb
+tvalues3<-seq(delta, tmax3,delta)
+ntvalues3<- length(tvalues3)
+X3 <-rep(0, ntvalues3)
+for(t in 1: ntvalues3) X3[t]<- length( which( S3<=tvalues3[t] ))
+plot(tvalues3, X3, type="s", main = 'Problem 8.1 (c) --> N = 1000')
+```
+\newpage
+d) 
+
+```{r}
+POI<-rpois(n=1000 ,lambda=lb)
+S <-rep(0,N[2])
+S[1]<-POI[1]
+for(k in 2:N[2]) S[k]<- S[k-1] + POI[k]
+
+tmax<- S[N[2]]+ 0.5/lb
 tvalues<-seq(delta, tmax,delta)
 ntvalues<- length(tvalues)
 X<-rep(0, ntvalues)
 for(t in 1: ntvalues) X[t]<- length( which( S<=tvalues[t] ))
-plot(tvalues, X, type="s")
+plot(tvalues, X, type="s",col= 'blue', main = 'Poisson(1000, 1/2) and  -->  N = 100')
+lines(y=tvalues2, X2, type="s", col= 'green')
 
+legend("topleft",
+c("Poisson","Exponential"),
+fill=c("blue","green")
+)
 ```
+
+
+\underline{Problem 8.2}
 
