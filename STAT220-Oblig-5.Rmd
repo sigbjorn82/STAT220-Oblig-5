@@ -81,7 +81,7 @@ c("Poisson","Exponential"),
 fill=c("blue","green")
 )
 ```
-
+\newpage
 
 \underline{Problem 8.2}
 
