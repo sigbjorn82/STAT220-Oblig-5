@@ -121,10 +121,3 @@ legend("topright", c(expression(paste(, lambda)), "3"),
        lty = c(0, 1), col = c("red"), box.lty = 0, lwd = 2)
 ```
 
-\newpage
-\underline{Problem 8.3}
-
-
-$P(N(S)=i | N(t)=N) = {P(N(S)=i \cap N(t)-N(s)=n-i) \over P(N(t)=n}={P(N(s)=i)\cdot P(N(t-s)=n-i) \over P(N(t)=n)}$
-
-$={n! \over i!(n-1!)}\cdot {s^i \cdot (t-s)^{n-i} \over t^n}$
